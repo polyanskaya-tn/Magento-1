@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Module DDGOrders
+ * Add old orders from Magento 1 to dotdigital
+ *
+ * @category    DigitalSkynet
+ * @package     DigitalSkynet_DDGOrders
+ * @author      Polyanskaya T.A.
+ */
+-->
+<config>
+    <modules>
+        <DigitalSkynet_DDGOrders>
+            <version>1.0.0</version>
+        </DigitalSkynet_DDGOrders>
+    </modules>
+    <global>
+        <models>
+            <ddgorders>
+                <class>DigitalSkynet_DDGOrders_Model</class>
+            </ddgorders>                         
+        </models>
+    </global>
+	<frontend>
+        <routers>
+			<ddgorders>
+				<use>standard</use>
+				<args>
+					<module>DigitalSkynet_DDGOrders</module>
+					<frontName>ddgorders</frontName>
+				</args>
+			</ddgorders>
+		</routers>
+    </frontend>
+    <crontab>
+        <jobs>
+            <ddgorders_transfer_ddg>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ddgorders/Observer::run</model>
+                </run>
+            </ddgorders_transfer_ddg>
+        </jobs>
+    </crontab>
+</config>
